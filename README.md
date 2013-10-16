@@ -53,6 +53,9 @@ regex : 正则， （regex=/^[A-Za-z]+$/ ） <br/>
 required : 必填内容，针对input，textarea <br/>
 minlength : 最小字符长度 （minlength=3）<br/>
 maxlength : 最大字符长度 （maxlength=10）<br/>
+number : 数字<br/>
+alpha : 字母（大小写都可）<br/>
+string : 字母，数字，下划线<br/>
 email : 邮件格式<br/>
 telphone : 电话<br/>
 mobile : 手机<br/>
