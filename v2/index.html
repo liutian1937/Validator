@@ -275,7 +275,7 @@ var F = Validator('myform',{
     timely : true //开启实时验证,默认关闭
 });
 F.addValidation([
-    ["username","required",'姓名不能为空' }],
+    ["username","required",'姓名不能为空'],
     ["username","regex=/^[A-Za-z]+$/",'只能是a-z'],
     ["username","minlength=3",'姓名必须大于3个字符'],
     ["username","maxlength=10",'姓名必须小于10个字符'],
