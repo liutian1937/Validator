@@ -1,9 +1,9 @@
-Validator
+<h1>Validator</h1>
 =========
 
-Form Validator
+<p>Form Validator</p>
 
-Init :
+<h2>Init :</h2>
 
 <pre>
 var F = Validator('form表单name值',{
@@ -46,23 +46,23 @@ errShow : function(data){
 
 </pre>
 
-API :
+<h2>API :</h2>
 
 
-regex : 正则， （regex=/^[A-Za-z]+$/ ）
-required : 必填内容，针对input，textarea
-minlength : 最小字符长度 （minlength=3）
-maxlength : 最大字符长度 （maxlength=10）
-email : 邮件格式
-telphone : 电话
-mobile : 手机
-greaterthan : 大于某个值，或者某个input中的值 （greaterthan=5 或者 greaterthan=字段名 ）
-lessthan : 小于某个值，用法同上
-equal : 等于某个值，或者数组(数组以|分隔)中的某个值，或者字段  （equal=66 或者 equal=字段名 或者  equal='aa|bb|cc' ）
-unequal ： 不等于某个值，用法同上
+regex : 正则， （regex=/^[A-Za-z]+$/ ） <br/>
+required : 必填内容，针对input，textarea <br/>
+minlength : 最小字符长度 （minlength=3）<br/>
+maxlength : 最大字符长度 （maxlength=10）<br/>
+email : 邮件格式<br/>
+telphone : 电话<br/>
+mobile : 手机<br/>
+greaterthan : 大于某个值，或者某个input中的值 （greaterthan=5 或者 greaterthan=字段名 ）<br/>
+lessthan : 小于某个值，用法同上<br/>
+equal : 等于某个值，或者数组(数组以|分隔)中的某个值，或者字段  （equal=66 或者 equal=字段名 或者  equal='aa|bb|cc' ）<br/>
+unequal ： 不等于某个值，用法同上<br/>
 
-notselect ：不能选择的值，指的是select中option的value,或者 radio/checkbox数组中某一个的value （notselect=字符串或者数字或者数组）
-shouldselect : 必须选中，用法同上
+notselect ：不能选择的值，指的是select中option的value,或者 radio/checkbox数组中某一个的value （notselect=字符串或者数字或者数组）<br/>
+shouldselect : 必须选中，用法同上<br/>
 
-minselect : 最少选中几项
-maxselect : 最多选择几项
+minselect : 最少选中几项<br/>
+maxselect : 最多选择几项<br/>
