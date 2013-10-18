@@ -44,7 +44,7 @@ ul{list-style: none;}
         .setting label input{width:auto;}
     </style>
 
-	<script language="JavaScript" src="validator.min.js" type="text/javascript"></script>
+	
 </head>
   
   <body>
@@ -109,6 +109,12 @@ ul{list-style: none;}
                       <label>手机</label>
             <span>
                 <input type="text" name="mobile" />
+            </span>
+                  </li>
+				  <li>
+                      <label>URL</label>
+            <span>
+                <input type="text" name="url" />
             </span>
                   </li>
                   <li>
@@ -249,7 +255,7 @@ ul{list-style: none;}
 
 
 
-
+<script language="JavaScript" src="validator.min.js" type="text/javascript"></script>
 <script language="JavaScript" type="text/javascript">
 
 document.forms['myform'].onsubmit = function(){
@@ -285,6 +291,8 @@ F.addValidation([
     ["telphone","telphone",'电话格式错误'],
     ["mobile","required",'手机必填'],
     ["mobile","mobile",'手机格式错误'],
+	["url","required",'url必填'],
+	["url","url",'url格式错误'],
     ["than","greaterthan=5",'必须大于5'],
     ["than","lessthan=10",'必须小于10'],
     ["greaterPrev","greaterthan=than",'必须大于上面的值'],

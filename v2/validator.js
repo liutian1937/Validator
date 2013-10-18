@@ -119,7 +119,8 @@
 		}
 		this.init();
 	}
-	Validator.prototype.init = function (options) {
+	Validator.fn = Validator.prototype;
+	Validator.fn.init = function (options) {
 		//初始化
 		var self = this, formobj = this.formobj;
         if(options){
@@ -147,7 +148,7 @@
             self.errorFnArray = [];//缓存执行错误的function
         }
 	}
-    Validator.prototype.addValidation = function () {
+    Validator.fn.addValidation = function () {
         var self = this, pos, rule, ruleExt, itemname, itemobj, data = {};
         if(arguments[0].constructor === Array){
             Common.each(arguments[0],function(key,value){
@@ -213,7 +214,7 @@
 //            console.log(self.ruleData); //打印规则数组
         }
     }
-	Validator.prototype.checkForm = function () {
+	Validator.fn.checkForm = function () {
         var self = this;
         self.errorHash = {}; //缓存错误的，哈希表
         self.errorArray = []; //缓存错误的，数组
@@ -233,7 +234,7 @@
         return self.errorArray.length > 0 ? true : false ;
 	}
 
-    Validator.prototype.checkSingle = function(data,single) {
+    Validator.fn.checkSingle = function(data,single) {
         var self = this;
 
         if(!Commands.call(self,data)){
@@ -264,7 +265,7 @@
         }
 
     }
-    Validator.prototype.showError = function () {
+    Validator.fn.showError = function () {
         var self = this, msgArray = [], split;
 
         if(typeof self.options.errShow == 'function'){
@@ -301,7 +302,7 @@
             }
         }
     }
-    Validator.prototype.showErrorSingle = function (data){
+    Validator.fn.showErrorSingle = function (data){
         var self = this, obj = data.obj, msg = data.msg, name = data.name;
         if(!self.errObjList[name]){
             if(obj.tagName != 'SELECT' && obj.length){
@@ -316,7 +317,7 @@
             msg();
         }
     }
-    Validator.prototype.showErrorBox = function (obj,msg) {
+    Validator.fn.showErrorBox = function (obj,msg) {
         var self = this, divList = obj.parentNode.getElementsByTagName('div');
         if(self.errGlobalObj){
             self.errGlobalObj.innerHTML = msg;
@@ -338,7 +339,7 @@
             }
         }
     }
-    Validator.prototype.checkError = function (data) {
+    Validator.fn.checkError = function (data) {
         var self = this, len = self.errorHash[data.name];
 //        console.log(self.errorArray);
         if(self.errGlobalObj){
@@ -358,7 +359,7 @@
             self.hideError(data.name);
         }
     }
-    Validator.prototype.hideError = function (objName) {
+    Validator.fn.hideError = function (objName) {
         var self = this;
         if(objName){
             if(self.errObjList[objName]){
@@ -412,6 +413,10 @@
             case 'mobile' :
                 return Common.isEmpty(data.obj.value) ? true : /^0?1(3|5|8)\d{9}$/.test(data.obj.value);
                 break;
+			case 'url' : 
+				var regex = /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
+				return regex.test(data.obj.value);
+				break;
             case 'lessthan' :
             case 'greaterthan' :
                 var compare = typeof data.ruleExt == 'number' ? data.ruleExt : parseInt(this.formobj[data.ruleExt].value);
