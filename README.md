@@ -16,7 +16,8 @@ var F = Validator('form表单name值',{
 
 //添加验证规则，传参为二位数组
 
-F.addValidation([
+
+F.addRule([
     ["username","required",'姓名不能为空'],
     ["username","regex=/^[A-Za-z]+$/",'只能是a-z'],
     ["username","minlength=3",'姓名必须大于3个字符'],
@@ -27,7 +28,7 @@ F.addValidation([
 
 其中第三个参数可以是function,比如
 
-F.addValidation([
+F.addRule([
     ["username","required",function(){ alert('姓名不能为空') }],
 	.....
 ]);

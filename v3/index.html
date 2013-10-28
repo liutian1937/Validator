@@ -255,7 +255,7 @@ ul{list-style: none;}
 
 
 
-<script language="JavaScript" src="validator.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="validator.js" type="text/javascript"></script>
 <script language="JavaScript" type="text/javascript">
 
 document.forms['myform'].onsubmit = function(){
@@ -282,7 +282,7 @@ var F = Validator('myform',{
 });
 
 
-F.addValidation([
+F.addRule([
     ["username","required",'姓名不能为空'],
     ["username","regex=/^[A-Za-z]+$/",'只能是a-z'],
     ["username","minlength=3",'姓名必须大于3个字符'],
@@ -316,6 +316,12 @@ F.addValidation([
     ["checkRadio","notselect=3",'不能选中第三项'],
 	["textarea","required",'内容不能为空']
 ]);
+
+
+/*F.removeRule([
+	['username','required'],
+	['email','required']
+]);*/
 
     function initV(){
         var numBox = document.getElementsByName('shownum'), timeBox = document.getElementsByName('timely'), wrongBox = document.getElementsByName('wrongtype'), shownum, timely, wrongtype;
