@@ -1,3 +1,8 @@
+/**
+* Form Validator
+* Author : ok8008@yeah.net
+* Link : https://github.com/liutian1937/Validator
+*/
 (function(){
 	var defaults = {
 		together : false, //默认遇错误打断，显示单条错误信息
