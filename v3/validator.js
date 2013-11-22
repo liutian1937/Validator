@@ -65,7 +65,7 @@
                 for ( ; i < len; i += 1){
                     if(Common.hasClass(boxList[i],classname)) {
                         ret = boxList[i];
-                        return false;
+                        return ret;
                     }
                 };
             }
