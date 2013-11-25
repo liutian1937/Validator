@@ -65,7 +65,7 @@
                 for ( ; i < len; i += 1){
                     if(Common.hasClass(boxList[i],classname)) {
                         ret = boxList[i];
-                        return false;
+                        return ret;
                     }
                 };
             }
@@ -456,10 +456,10 @@
                 return Common.isEmpty(data.obj.value) ? false : true ;
                 break;
             case 'maxlength' :
-                return Common.isEmpty(data.obj.value) ? true : data.obj.value.length < data.ruleExt ;
+                return Common.isEmpty(data.obj.value) ? true : data.obj.value.length <= data.ruleExt ;
                 break;
             case 'minlength' :
-                return Common.isEmpty(data.obj.value) ? true : data.obj.value.length > data.ruleExt ;
+                return Common.isEmpty(data.obj.value) ? true : data.obj.value.length >= data.ruleExt ;
                 break;
             case 'number' :
                 return Common.isEmpty(data.obj.value) ? true : /^[\d]+$/.test(data.obj.value);
