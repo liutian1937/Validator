@@ -14,8 +14,11 @@ var F = Validator('form表单name值',{
 		timely : false //实时判断，是否失去焦点以及change判断
 });
 
-//添加验证规则，传参为二位数组
+//添加验证规则，传参为（二维数组或者一维数组，单条验证规则必须符合传参规则），
+即：[字段名,判断条件,报错提示或者函数]
 
+
+二维数组形式
 
 F.addRule([
     ["username","required",'姓名不能为空'],
@@ -26,12 +29,30 @@ F.addRule([
     ["email","email",'邮箱格式']
 ]);
 
+一维数组形式（只能定义一条规则）
+
+F.addRule(["username","required",'姓名不能为空']);
+
+
+
 其中第三个参数可以是function,比如
 
 F.addRule([
     ["username","required",function(){ alert('姓名不能为空') }],
 	.....
 ]);
+
+addRule可以动态添加，并通过removeRule来移除（removeRule同样可以采用二维数组和一维数组），比如
+
+F.removeRule([
+	['username','required'],
+	['username','regex']
+	......
+])
+规则：[字段名,验证规则] ， 如果不添加验证规则，默认会移除该字段的所有验证，如
+F.removeRule(['username']) 会移除所有username字段的所有验证规则
+
+
 
 全局的报错也支持function(接收参数为错误的数组),
 
