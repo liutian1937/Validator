@@ -1,4 +1,4 @@
-<h1>Validator</h1>
+ï»¿<h1>Validator</h1>
 =========
 
 <p>Form Validator</p>
@@ -6,55 +6,55 @@
 <h2>Init :</h2>
 
 <pre>
-var F = Validator('form±íµ¥nameÖµ',{
-		together : false, //Ä¬ÈÏÓö´íÎó´ò¶Ï£¬ÏÔÊ¾µ¥Ìõ´íÎóĞÅÏ¢,Ä¬ÈÏÎªfalse£¨Ö»ÏÔÊ¾Ò»Ìõ£©
-		errShow : 'alert', //´íÎóÌáÊ¾£¬Ä¬ÈÏÎªalert£¬Ö§³Ö×Ö·û´®(alert,single,multiple),×Ô¶¨Òåfunction(string || array())
-		errBox : 'error_strings', //´íÎóÏûÏ¢class£¬Ä¬ÈÏÎªform±íµ¥ÖĞµÄ .error_strings
-        errPar : 'li', //µ¥¸ö±íµ¥ÔªËØµÄ¸¸¼¶ÔªËØ£¬ÓÃÓÚ¶¨Î»´íÎóµÄÎ»ÖÃ li > (span > input ) ~ span.error_strings
-		timely : false //ÊµÊ±ÅĞ¶Ï£¬ÊÇ·ñÊ§È¥½¹µãÒÔ¼°changeÅĞ¶Ï
+var F = Validator('formè¡¨å•nameå€¼',{
+		together : false, //é»˜è®¤é‡é”™è¯¯æ‰“æ–­ï¼Œæ˜¾ç¤ºå•æ¡é”™è¯¯ä¿¡æ¯,é»˜è®¤ä¸ºfalseï¼ˆåªæ˜¾ç¤ºä¸€æ¡ï¼‰
+		errShow : 'alert', //é”™è¯¯æç¤ºï¼Œé»˜è®¤ä¸ºalertï¼Œæ”¯æŒå­—ç¬¦ä¸²(alert,single,multiple),è‡ªå®šä¹‰function(string || array())
+		errBox : 'error_strings', //é”™è¯¯æ¶ˆæ¯classï¼Œé»˜è®¤ä¸ºformè¡¨å•ä¸­çš„ .error_strings
+        errPar : 'li', //å•ä¸ªè¡¨å•å…ƒç´ çš„çˆ¶çº§å…ƒç´ ï¼Œç”¨äºå®šä½é”™è¯¯çš„ä½ç½® li > (span > input ) ~ span.error_strings
+		timely : false //å®æ—¶åˆ¤æ–­ï¼Œæ˜¯å¦å¤±å»ç„¦ç‚¹ä»¥åŠchangeåˆ¤æ–­
 });
 
-//Ìí¼ÓÑéÖ¤¹æÔò£¬´«²ÎÎª£¨¶şÎ¬Êı×é»òÕßÒ»Î¬Êı×é£¬µ¥ÌõÑéÖ¤¹æÔò±ØĞë·ûºÏ´«²Î¹æÔò£©£¬
-¼´£º[×Ö¶ÎÃû,ÅĞ¶ÏÌõ¼ş,±¨´íÌáÊ¾»òÕßº¯Êı]
+//æ·»åŠ éªŒè¯è§„åˆ™ï¼Œä¼ å‚ä¸ºï¼ˆäºŒç»´æ•°ç»„æˆ–è€…ä¸€ç»´æ•°ç»„ï¼Œå•æ¡éªŒè¯è§„åˆ™å¿…é¡»ç¬¦åˆä¼ å‚è§„åˆ™ï¼‰ï¼Œ
+å³ï¼š[å­—æ®µå,åˆ¤æ–­æ¡ä»¶,æŠ¥é”™æç¤ºæˆ–è€…å‡½æ•°]
 
 
-¶şÎ¬Êı×éĞÎÊ½
+äºŒç»´æ•°ç»„å½¢å¼
 
 F.addRule([
-    ["username","required",'ĞÕÃû²»ÄÜÎª¿Õ'],
-    ["username","regex=/^[A-Za-z]+$/",'Ö»ÄÜÊÇa-z'],
-    ["username","minlength=3",'ĞÕÃû±ØĞë´óÓÚ3¸ö×Ö·û'],
-    ["username","maxlength=10",'ĞÕÃû±ØĞëĞ¡ÓÚ10¸ö×Ö·û'],
-    ["email","required",'ÓÊÏä±ØÌî'],
-    ["email","email",'ÓÊÏä¸ñÊ½']
+    ["username","required",'å§“åä¸èƒ½ä¸ºç©º'],
+    ["username","regex=/^[A-Za-z]+$/",'åªèƒ½æ˜¯a-z'],
+    ["username","minlength=3",'å§“åå¿…é¡»å¤§äº3ä¸ªå­—ç¬¦'],
+    ["username","maxlength=10",'å§“åå¿…é¡»å°äº10ä¸ªå­—ç¬¦'],
+    ["email","required",'é‚®ç®±å¿…å¡«'],
+    ["email","email",'é‚®ç®±æ ¼å¼']
 ]);
 
-Ò»Î¬Êı×éĞÎÊ½£¨Ö»ÄÜ¶¨ÒåÒ»Ìõ¹æÔò£©
+ä¸€ç»´æ•°ç»„å½¢å¼ï¼ˆåªèƒ½å®šä¹‰ä¸€æ¡è§„åˆ™ï¼‰
 
-F.addRule(["username","required",'ĞÕÃû²»ÄÜÎª¿Õ']);
+F.addRule(["username","required",'å§“åä¸èƒ½ä¸ºç©º']);
 
 
 
-ÆäÖĞµÚÈı¸ö²ÎÊı¿ÉÒÔÊÇfunction,±ÈÈç
+å…¶ä¸­ç¬¬ä¸‰ä¸ªå‚æ•°å¯ä»¥æ˜¯function,æ¯”å¦‚
 
 F.addRule([
-    ["username","required",function(){ alert('ĞÕÃû²»ÄÜÎª¿Õ') }],
+    ["username","required",function(){ alert('å§“åä¸èƒ½ä¸ºç©º') }],
 	.....
 ]);
 
-addRule¿ÉÒÔ¶¯Ì¬Ìí¼Ó£¬²¢Í¨¹ıremoveRuleÀ´ÒÆ³ı£¨removeRuleÍ¬Ñù¿ÉÒÔ²ÉÓÃ¶şÎ¬Êı×éºÍÒ»Î¬Êı×é£©£¬±ÈÈç
+addRuleå¯ä»¥åŠ¨æ€æ·»åŠ ï¼Œå¹¶é€šè¿‡removeRuleæ¥ç§»é™¤ï¼ˆremoveRuleåŒæ ·å¯ä»¥é‡‡ç”¨äºŒç»´æ•°ç»„å’Œä¸€ç»´æ•°ç»„ï¼‰ï¼Œæ¯”å¦‚
 
 F.removeRule([
 	['username','required'],
 	['username','regex']
 	......
 ])
-¹æÔò£º[×Ö¶ÎÃû,ÑéÖ¤¹æÔò] £¬ Èç¹û²»Ìí¼ÓÑéÖ¤¹æÔò£¬Ä¬ÈÏ»áÒÆ³ı¸Ã×Ö¶ÎµÄËùÓĞÑéÖ¤£¬Èç
-F.removeRule(['username']) »áÒÆ³ıËùÓĞusername×Ö¶ÎµÄËùÓĞÑéÖ¤¹æÔò
+è§„åˆ™ï¼š[å­—æ®µå,éªŒè¯è§„åˆ™] ï¼Œ å¦‚æœä¸æ·»åŠ éªŒè¯è§„åˆ™ï¼Œé»˜è®¤ä¼šç§»é™¤è¯¥å­—æ®µçš„æ‰€æœ‰éªŒè¯ï¼Œå¦‚
+F.removeRule(['username']) ä¼šç§»é™¤æ‰€æœ‰usernameå­—æ®µçš„æ‰€æœ‰éªŒè¯è§„åˆ™
 
 
 
-È«¾ÖµÄ±¨´íÒ²Ö§³Öfunction(½ÓÊÕ²ÎÊıÎª´íÎóµÄÊı×é),
+å…¨å±€çš„æŠ¥é”™ä¹Ÿæ”¯æŒfunction(æ¥æ”¶å‚æ•°ä¸ºé”™è¯¯çš„æ•°ç»„),
 
 errShow : function(data){
     var wrongList = document.getElementById('wrongList'), html = [];
@@ -71,23 +71,23 @@ errShow : function(data){
 <h2>API :</h2>
 
 
-regex : ÕıÔò£¬ £¨regex=/^[A-Za-z]+$/ £© <br/>
-required : ±ØÌîÄÚÈİ£¬Õë¶Ôinput£¬textarea <br/>
-minlength : ×îĞ¡×Ö·û³¤¶È £¨minlength=3£©<br/>
-maxlength : ×î´ó×Ö·û³¤¶È £¨maxlength=10£©<br/>
-number : Êı×Ö<br/>
-alpha : ×ÖÄ¸£¨´óĞ¡Ğ´¶¼¿É£©<br/>
-string : ×ÖÄ¸£¬Êı×Ö£¬ÏÂ»®Ïß<br/>
-email : ÓÊ¼ş¸ñÊ½<br/>
-telphone : µç»°<br/>
-mobile : ÊÖ»ú<br/>
-greaterthan : ´óÓÚÄ³¸öÖµ£¬»òÕßÄ³¸öinputÖĞµÄÖµ £¨greaterthan=5 »òÕß greaterthan=×Ö¶ÎÃû £©<br/>
-lessthan : Ğ¡ÓÚÄ³¸öÖµ£¬ÓÃ·¨Í¬ÉÏ<br/>
-equal : µÈÓÚÄ³¸öÖµ£¬»òÕßÊı×é(Êı×éÒÔ|·Ö¸ô)ÖĞµÄÄ³¸öÖµ£¬»òÕß×Ö¶Î  £¨equal=66 »òÕß equal=×Ö¶ÎÃû »òÕß  equal='aa|bb|cc' £©<br/>
-unequal £º ²»µÈÓÚÄ³¸öÖµ£¬ÓÃ·¨Í¬ÉÏ<br/>
+regex : æ­£åˆ™ï¼Œ ï¼ˆregex=/^[A-Za-z]+$/ ï¼‰ <br/>
+required : å¿…å¡«å†…å®¹ï¼Œé’ˆå¯¹inputï¼Œtextarea <br/>
+minlength : æœ€å°å­—ç¬¦é•¿åº¦ ï¼ˆminlength=3ï¼‰<br/>
+maxlength : æœ€å¤§å­—ç¬¦é•¿åº¦ ï¼ˆmaxlength=10ï¼‰<br/>
+number : æ•°å­—<br/>
+alpha : å­—æ¯ï¼ˆå¤§å°å†™éƒ½å¯ï¼‰<br/>
+string : å­—æ¯ï¼Œæ•°å­—ï¼Œä¸‹åˆ’çº¿<br/>
+email : é‚®ä»¶æ ¼å¼<br/>
+telphone : ç”µè¯<br/>
+mobile : æ‰‹æœº<br/>
+greaterthan : å¤§äºæŸä¸ªå€¼ï¼Œæˆ–è€…æŸä¸ªinputä¸­çš„å€¼ ï¼ˆgreaterthan=5 æˆ–è€… greaterthan=å­—æ®µå ï¼‰<br/>
+lessthan : å°äºæŸä¸ªå€¼ï¼Œç”¨æ³•åŒä¸Š<br/>
+equal : ç­‰äºæŸä¸ªå€¼ï¼Œæˆ–è€…æ•°ç»„(æ•°ç»„ä»¥|åˆ†éš”)ä¸­çš„æŸä¸ªå€¼ï¼Œæˆ–è€…å­—æ®µ  ï¼ˆequal=66 æˆ–è€… equal=å­—æ®µå æˆ–è€…  equal='aa|bb|cc' ï¼‰<br/>
+unequal ï¼š ä¸ç­‰äºæŸä¸ªå€¼ï¼Œç”¨æ³•åŒä¸Š<br/>
 
-notselect £º²»ÄÜÑ¡ÔñµÄÖµ£¬Ö¸µÄÊÇselectÖĞoptionµÄvalue,»òÕß radio/checkboxÊı×éÖĞÄ³Ò»¸öµÄvalue £¨notselect=×Ö·û´®»òÕßÊı×Ö»òÕßÊı×é£©<br/>
-shouldselect : ±ØĞëÑ¡ÖĞ£¬ÓÃ·¨Í¬ÉÏ<br/>
+notselect ï¼šä¸èƒ½é€‰æ‹©çš„å€¼ï¼ŒæŒ‡çš„æ˜¯selectä¸­optionçš„value,æˆ–è€… radio/checkboxæ•°ç»„ä¸­æŸä¸€ä¸ªçš„value ï¼ˆnotselect=å­—ç¬¦ä¸²æˆ–è€…æ•°å­—æˆ–è€…æ•°ç»„ï¼‰<br/>
+shouldselect : å¿…é¡»é€‰ä¸­ï¼Œç”¨æ³•åŒä¸Š<br/>
 
-minselect : ×îÉÙÑ¡ÖĞ¼¸Ïî<br/>
-maxselect : ×î¶àÑ¡Ôñ¼¸Ïî<br/>
+minselect : æœ€å°‘é€‰ä¸­å‡ é¡¹<br/>
+maxselect : æœ€å¤šé€‰æ‹©å‡ é¡¹<br/>
