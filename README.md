@@ -79,7 +79,7 @@ number : 数字<br/>
 alpha : 字母（大小写都可）<br/>
 string : 字母，数字，下划线<br/>
 email : 邮件格式<br/>
-telphone : 电话<br/>
+telephone : 电话<br/>
 mobile : 手机<br/>
 greaterthan : 大于某个值，或者某个input中的值 （greaterthan=5 或者 greaterthan=字段名 ）<br/>
 lessthan : 小于某个值，用法同上<br/>
