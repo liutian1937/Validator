@@ -2,6 +2,7 @@
 * Form Validator
 * Author : ok8008@yeah.net
 * Link : https://github.com/liutian1937/Validator
+* Version : v4
 */
 (function(){
 	var defaults = {
@@ -173,7 +174,11 @@
                     self.showError();
                     return false;
                 }else{
-                    return formobj.oldSubmit();
+					if(formobj.oldSubmit){
+						return formobj.oldSubmit();
+					}else{
+						return true;
+					}
                 }
             }
             self.ruleData = []; //缓存验证规则
@@ -197,6 +202,7 @@
 				self.initRule(rules);
 			}
         }
+		return self;
 		// console.log(self.ruleData); //打印规则数组
     }
 	Validator.fn.removeRule = function (rules) {
@@ -252,6 +258,8 @@
 		for (var i = 0; i < textareaList.length; i += 1){
 			Common.unbind(textareaList[i]);
 		}
+		self.formobj.oldSubmit = null;
+		self.formobj.onsubmit = null;
 		self.init();
 	}
 	Validator.fn.initRule = function (value) {
@@ -502,7 +510,7 @@
                 return Common.isEmpty(data.obj.value) ? true : /^[A-Za-z]+$/.test(data.obj.value);
                 break;
             case 'string' :
-                return Common.isEmpty(data.obj.value) ? true : /^\\w+$/.test(data.obj.value);
+                return Common.isEmpty(data.obj.value) ? true : /^\w+$/.test(data.obj.value);
                 break;
             case 'email' :
                 return Common.isEmpty(data.obj.value) ? true : /\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/.test(data.obj.value);

@@ -290,7 +290,7 @@ F.addRule([
     ["email","required",'邮箱必填'],
     ["email","email",'邮箱格式'],
     ["telphone","required",'电话必填'],
-    ["telphone","telphone",'电话格式错误'],
+    ["telphone","string",'电话格式错误'],
     ["mobile","required",'手机必填'],
     ["mobile","mobile",'手机格式错误'],
 	["url","required",'url必填'],
@@ -316,9 +316,11 @@ F.addRule([
     ["checkRadio","notselect=3",'不能选中第三项'],
 	["textarea","required",'内容不能为空']
 ]);
-F.destory();
+//F.destory();
 //F.removeRule('username');
 //F.removeRule(['username']);
+
+
 
 </script>
   
