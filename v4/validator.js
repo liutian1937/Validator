@@ -515,7 +515,7 @@
             case 'email' :
                 return Common.isEmpty(data.obj.value) ? true : /\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/.test(data.obj.value);
                 break;
-            case 'telphone' :
+            case 'telephone' :
                 return Common.isEmpty(data.obj.value) ? true : /^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/.test(data.obj.value);
                 break;
             case 'mobile' :
