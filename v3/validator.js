@@ -474,10 +474,14 @@
                 return Common.isEmpty(data.obj.value) ? true : /\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/.test(data.obj.value);
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
             case 'telphone' :
 =======
             case 'telephone' :
 >>>>>>> 5bde8fab199b6e754354d9eb5b4da7ab97db5270
+=======
+            case 'telephone' :
+>>>>>>> f1687a504f8a532d0073649b3000f4bbe6d39421
                 return Common.isEmpty(data.obj.value) ? true : /^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/.test(data.obj.value);
                 break;
             case 'mobile' :
