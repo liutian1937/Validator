@@ -79,7 +79,11 @@ number : 数字<br/>
 alpha : 字母（大小写都可）<br/>
 string : 字母，数字，下划线<br/>
 email : 邮件格式<br/>
+<<<<<<< HEAD
 telphone : 电话<br/>
+=======
+telephone : 电话<br/>
+>>>>>>> 5bde8fab199b6e754354d9eb5b4da7ab97db5270
 mobile : 手机<br/>
 greaterthan : 大于某个值，或者某个input中的值 （greaterthan=5 或者 greaterthan=字段名 ）<br/>
 lessthan : 小于某个值，用法同上<br/>
@@ -90,4 +94,8 @@ notselect ：不能选择的值，指的是select中option的value,或者 radio/
 shouldselect : 必须选中，用法同上<br/>
 
 minselect : 最少选中几项<br/>
+<<<<<<< HEAD
 maxselect : 最多选择几项<br/>
+=======
+maxselect : 最多选择几项<br/>
+>>>>>>> 5bde8fab199b6e754354d9eb5b4da7ab97db5270

@@ -1,7 +1,8 @@
-/**
+﻿/**
 * Form Validator
 * Author : ok8008@yeah.net
 * Link : https://github.com/liutian1937/Validator
+* Version : v4
 */
 (function(){
 	var defaults = {
@@ -86,43 +87,52 @@
         bind : (function() {
 			if (window.addEventListener) {
 				return function(el, type, fn, identifier) {
-					el.bindFn = {};
-					el.addEventListener(type, function(){
-						fn();
-						el.bindFn[identifier] = {
-							eventType : type,
-							eventFn : arguments.callee
-						}
-					}, false);
+					el.bindFn = el.bindFn || {};
+					el.bindFn[identifier] = {
+						eventType : type,
+						eventFn : fn
+					}
+					el.addEventListener(type, fn, false);
 				};
 			} else if (window.attachEvent) {
 				return function(el, type, fn, identifier) {
-					el.bindFn = {};
-					el.attachEvent("on" + type, function(){
-						fn();
-						el.bindFn[identifier] = {
-							eventType : type,
-							eventFn : arguments.callee
-						}
-					});
+					el.bindFn = el.bindFn || {};
+					el.bindFn[identifier] = {
+						eventType : type,
+						eventFn : fn
+					}
+					el.attachEvent("on" + type, fn);
 				};
 			}
 		})(),
 		unbind : (function(){
 			if (window.addEventListener) {
 				return function(el, identifier ) {
-					if(el.bindFn[identifier]){
-						console.log(identifier);
-						var fn = el.bindFn[identifier]['eventFn'], type = el.bindFn[identifier]['eventType'];
-						el.removeEventListener(type, fn);
+					if(identifier){
+						if(el.bindFn[identifier]){
+							var fn = el.bindFn[identifier]['eventFn'], type = el.bindFn[identifier]['eventType'];
+							el.removeEventListener(type, fn);
+						}
+					}else{
+						var key;
+						for(key in el.bindFn){
+							el.removeEventListener(el.bindFn[key]['eventType'], el.bindFn[key]['eventFn']);
+						}
 					};
 				};
 			} else if (window.attachEvent) {
 				return function(el, identifier) {
-					if(el.bindFn[identifier]){
-						var fn = el.bindFn[identifier]['eventFn'], type = el.bindFn[identifier]['eventType'];
-						el.detachEvent("on" + type, fn);
-					};
+					if(identifier){
+						if(el.bindFn[identifier]){
+							var fn = el.bindFn[identifier]['eventFn'], type = el.bindFn[identifier]['eventType'];
+							el.detachEvent("on" + type, fn);
+						};
+					}else{
+						var key;
+						for(key in el.bindFn){
+							el.detachEvent("on" + el.bindFn[key]['eventType'], el.bindFn[key]['eventFn']);
+						}
+					}
 				};
 			}
 		})(),
@@ -164,7 +174,11 @@
                     self.showError();
                     return false;
                 }else{
-                    return formobj.oldSubmit();
+					if(formobj.oldSubmit){
+						return formobj.oldSubmit();
+					}else{
+						return true;
+					}
                 }
             }
             self.ruleData = []; //缓存验证规则
@@ -188,7 +202,8 @@
 				self.initRule(rules);
 			}
         }
-		//console.log(self.ruleData); //打印规则数组
+		return self;
+		// console.log(self.ruleData); //打印规则数组
     }
 	Validator.fn.removeRule = function (rules) {
 		var self = this, itemname, rulename, itemArray = [], obj, index;
@@ -198,27 +213,54 @@
 				for(var i = 0; i < rules.length; i += 1){
 					itemname = rules[i][0];
 					rulename = rules[i][1];
-					for(var j = 0; j < self.ruleData.length; j += 1){
-						if(self.ruleData[j].name == itemname && self.ruleData[j].rule == rulename){
-							Common.unbind(self.ruleData[j].obj,rulename);
-							self.ruleData.splice(j,1);
-							return false;
-						}
-					}
+					self.removeRuleFn(itemname,rulename);
 				}
 			}else{
 				//如果是一维数组
 				itemname = rules[0], rulename = rules[1];
-				Common.each(self.ruleData,function(key,value){
-					if(value.name == itemname && value.rule == rulename){
-						Common.unbind(value.obj,value.rule);
-						self.ruleData.splice(key,1);
-						return false;
-					}
-				});
+				self.removeRuleFn(itemname,rulename);
 			}
-        }
+        }else if(typeof rules === 'string'){
+			self.removeRuleFn(rules);
+		}
 		//console.log(self.ruleData); //打印规则数组
+	}
+	Validator.fn.removeRuleFn = function (itemname, rulename) {
+		var self = this;
+		if(rulename){
+			for(var j = 0; j < self.ruleData.length; j += 1){
+				if(self.ruleData[j].name == itemname && self.ruleData[j].rule == rulename){
+					Common.unbind(self.ruleData[j].obj,rulename);
+					self.ruleData.splice(j,1);
+					return false;
+				}
+			}
+		}else{
+			var j = self.ruleData.length;
+			while(j > 0){
+				j -= 1;
+				if(self.ruleData[j].name == itemname){
+					Common.unbind(self.ruleData[j].obj);
+					self.ruleData.splice(j,1);
+				}
+			}
+		}
+	};
+	Validator.fn.destory = function () {
+		var self = this;
+		var inputList = self.formobj.getElementsByTagName('input'), selectList = self.formobj.getElementsByTagName('select'), textareaList = self.formobj.getElementsByTagName('textarea');
+		for (var i = 0; i < inputList.length; i += 1){
+			Common.unbind(inputList[i]);
+		};
+		for (var i = 0; i < selectList.length; i += 1){
+			Common.unbind(selectList[i]);
+		};
+		for (var i = 0; i < textareaList.length; i += 1){
+			Common.unbind(textareaList[i]);
+		}
+		self.formobj.oldSubmit = null;
+		self.formobj.onsubmit = null;
+		self.init();
 	}
 	Validator.fn.initRule = function (value) {
 		var self = this, pos, rule, ruleExt, itemname, itemobj, data = {};
@@ -468,16 +510,12 @@
                 return Common.isEmpty(data.obj.value) ? true : /^[A-Za-z]+$/.test(data.obj.value);
                 break;
             case 'string' :
-                return Common.isEmpty(data.obj.value) ? true : /^\\w+$/.test(data.obj.value);
+                return Common.isEmpty(data.obj.value) ? true : /^\w+$/.test(data.obj.value);
                 break;
             case 'email' :
                 return Common.isEmpty(data.obj.value) ? true : /\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/.test(data.obj.value);
                 break;
-<<<<<<< HEAD
-            case 'telphone' :
-=======
             case 'telephone' :
->>>>>>> 5bde8fab199b6e754354d9eb5b4da7ab97db5270
                 return Common.isEmpty(data.obj.value) ? true : /^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/.test(data.obj.value);
                 break;
             case 'mobile' :
