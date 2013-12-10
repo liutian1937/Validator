@@ -57,6 +57,9 @@
                 parElem.insertBefore(newChild,refChild.nextSibling);
             }
         },
+		getPosTop : function (obj) {
+			return obj.offsetParent ? (obj.offsetTop + arguments.callee(obj.offsetParent)) : obj.offsetTop;
+		},
         getParent : function (obj,tagname){
             return obj.parentNode.tagName == tagname ? obj.parentNode : arguments.callee(obj.parentNode,tagname);
         },
@@ -187,6 +190,8 @@
             self.errorHash = {}; //缓存错误的，哈希表
             self.errorArray = []; //缓存错误的，数组
             self.errorFnArray = [];//缓存执行错误的function
+			
+			self.jump = true; //定位到错误开关
         }
 	}
     Validator.fn.addRule = function (rules) {
@@ -403,12 +408,18 @@
                     break;
                 case 'single':
                     Common.each(self.errorArray,function(key,value){
+						if(self.jump){
+							var y = Common.getPosTop(value.obj) - 10;
+							scrollTo(0,y);
+							self.jump = false; //只能跳转一次
+						};
                         if(typeof value.msg == 'string'){
                             self.showErrorSingle(value);
                         }else if(typeof value.msg == 'function'){
                             value.msg();
                         }
                     });
+					self.jump = true; //恢复
                     break;
             }
         }
