@@ -314,6 +314,9 @@
 						};
 					})();
 				}else{
+					Common.bind(itemobj,'focus',function(){
+						self.hideError(params.name);
+					},params.rule);
 					Common.bind(itemobj,'blur',function(){
 						self.checkSingle(params,true);
 						self.checkError(params);

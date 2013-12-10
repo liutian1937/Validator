@@ -252,10 +252,7 @@ ul{list-style: none;}
 
   </div>
 
-
-
-
-<script language="JavaScript" src="validator.js" type="text/javascript"></script>
+<script language="JavaScript" src="validator.min.js" type="text/javascript"></script>
 <script language="JavaScript" type="text/javascript">
 
 document.forms['myform'].onsubmit = function(){
@@ -276,8 +273,8 @@ document.forms['myform'].onsubmit = function(){
 
 var F = Validator('myform',{
     errPar : 'span',
-    together : true, //显示一条错误，还是同时显示多条错误，默认false(只显示一条)
-    errShow : 'single', //错误显示样式，默认为alert，支持字符串(alert,single,multiple),自定义function(string || array())
+    together : false, //显示一条错误，还是同时显示多条错误，默认false(只显示一条)
+    errShow : 'alert', //错误显示样式，默认为alert，支持字符串(alert,single,multiple),自定义function(string || array())
     timely : true //开启实时验证,默认关闭
 });
 
@@ -290,7 +287,7 @@ F.addRule([
     ["email","required",'邮箱必填'],
     ["email","email",'邮箱格式'],
     ["telphone","required",'电话必填'],
-    ["telphone","telephone",'电话格式错误'],
+    ["telphone","telphone",'电话格式错误'],
     ["mobile","required",'手机必填'],
     ["mobile","mobile",'手机格式错误'],
 	["url","required",'url必填'],
@@ -316,11 +313,52 @@ F.addRule([
     ["checkRadio","notselect=3",'不能选中第三项'],
 	["textarea","required",'内容不能为空']
 ]);
-//F.destory();
-//F.removeRule('username');
-//F.removeRule(['username']);
 
 
+/*F.removeRule([
+	['username','required'],
+	['email','required']
+]);*/
+
+    function initV(){
+        var numBox = document.getElementsByName('shownum'), timeBox = document.getElementsByName('timely'), wrongBox = document.getElementsByName('wrongtype'), shownum, timely, wrongtype;
+        for(var i = 0; i < numBox.length ; i += 1){
+            if(numBox[i].checked == true){
+                shownum = numBox[i].value;
+            }
+        }
+        for(var j = 0; j < wrongBox.length ; j += 1){
+            if(wrongBox[j].checked == true){
+                wrongtype = wrongBox[j].value;
+            }
+        }
+        for(var k = 0; k < timeBox.length ; k += 1){
+            if(timeBox[k].checked == true){
+                timely = timeBox[k].value;
+            }
+        }
+		
+		if(wrongtype == 'function'){
+            wrongtype = function(data){
+                var wrongList = document.getElementById('wrongList'), html = [];
+                wrongList.innerHTML = '';
+                for(var i =0; i < data.length ; i += 1){
+                    html.push('<li>'+data[i].msg+'</li>');
+                }
+                wrongList.innerHTML = html.join('');
+            }
+        }
+
+        shownum = shownum == 1 ? true : false;
+        timely = timely == 1 ? true : false;
+
+        F.init({
+            errPar : 'span',
+            together : shownum, //显示一条错误，还是同时显示多条错误，默认一条false
+            errShow : wrongtype, //错误显示样式，默认为alert，支持字符串(alert,single,multiple),自定义function(string || array())
+            timely : timely //开启实时验证
+        });
+    }
 
 </script>
   
