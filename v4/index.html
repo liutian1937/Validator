@@ -102,7 +102,7 @@ ul{list-style: none;}
                   <li>
                       <label>电话</label>
             <span>
-                <input type="text" name="telphone" />
+                <input type="text" name="telephone" />
             </span>
                   </li>
                   <li>
@@ -273,8 +273,8 @@ document.forms['myform'].onsubmit = function(){
 
 var F = Validator('myform',{
     errPar : 'span',
-    together : false, //显示一条错误，还是同时显示多条错误，默认false(只显示一条)
-    errShow : 'alert', //错误显示样式，默认为alert，支持字符串(alert,single,multiple),自定义function(string || array())
+    together : true, //显示一条错误，还是同时显示多条错误，默认false(只显示一条)
+    errShow : 'single', //错误显示样式，默认为alert，支持字符串(alert,single,multiple),自定义function(string || array())
     timely : true //开启实时验证,默认关闭
 });
 
@@ -286,8 +286,8 @@ F.addRule([
     ["username","maxlength=10",'姓名必须小于10个字符'],
     ["email","required",'邮箱必填'],
     ["email","email",'邮箱格式'],
-    ["telphone","required",'电话必填'],
-    ["telphone","telphone",'电话格式错误'],
+    ["telephone","required",'电话必填'],
+    ["telephone","telephone",'电话格式错误'],
     ["mobile","required",'手机必填'],
     ["mobile","mobile",'手机格式错误'],
 	["url","required",'url必填'],
