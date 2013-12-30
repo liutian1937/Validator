@@ -1,8 +1,8 @@
-﻿/**
+/**
 * Form Validator
 * Author : ok8008@yeah.net
 * Link : https://github.com/liutian1937/Validator
-* Version : v4
+* Version : v4.1
 */
 (function(){
 	var defaults = {
@@ -10,7 +10,8 @@
 		errShow : 'alert', //错误提示，默认为alert，支持字符串(alert,single,multiple),自定义function(string || array())
 		errBox : 'error_strings', //错误消息class，默认为form表单中的 .error_strings
         errPar : 'li', //单个表单元素的父级元素，用于定位错误的位置 li > (span > input ) ~ span.error_strings
-		timely : false //实时判断，是否失去焦点以及change判断
+		timely : false, //实时判断，是否失去焦点以及change判断
+		jump : true //是否定位到出错的地方
 	}
     var Common = {
 		extend : function (from,to){
@@ -408,7 +409,8 @@
                     break;
                 case 'single':
                     Common.each(self.errorArray,function(key,value){
-						if(self.jump){
+						if(self.jump && self.options.jump){
+							//是否支持跳转
 							var y = Common.getPosTop(value.obj) - 10;
 							scrollTo(0,y);
 							self.jump = false; //只能跳转一次
@@ -506,7 +508,7 @@
         var method = data.rule;
         switch (method) {
             case 'regex' :
-                return eval(data.ruleExt).test(data.obj.value);
+                return eval("("+data.ruleExt+")").test(data.obj.value);
                 break;
             case 'required' :
                 return Common.isEmpty(data.obj.value) ? false : true ;
