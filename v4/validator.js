@@ -179,7 +179,7 @@
                     return false;
                 }else{
 					if(this.hadSubmit){
-						//
+						//防止重复提交
 						return false;
 					}
 					this.hadSubmit = true;
