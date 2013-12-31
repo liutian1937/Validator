@@ -11,7 +11,7 @@
 		errBox : 'error_strings', //错误消息class，默认为form表单中的 .error_strings
         	errPar : 'li', //单个表单元素的父级元素，用于定位错误的位置 li > (span > input ) ~ span.error_strings
 		timely : false, //实时判断，是否失去焦点以及change判断
-		jump : true //是否定位到出错的地方
+		jump : false //是否定位到出错的地方,默认关闭
 	}
     var Common = {
 		extend : function (from,to){
@@ -178,6 +178,11 @@
                     self.showError();
                     return false;
                 }else{
+					if(this.hadSubmit){
+						//
+						return false;
+					}
+					this.hadSubmit = true;
 					if(formobj.oldSubmit){
 						return formobj.oldSubmit();
 					}else{
